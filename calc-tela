@@ -1,0 +1,108 @@
+#!/bin/bash
+clear
+
+
+a="1"
+fatoracao1="1"
+fatoracao2="1"
+
+
+until grep -E ^[0-9./]+$ <<< $num1
+do
+
+
+num1=`dialog --stdout --backtitle "Calculadora V1.0 - by Alex Bruno" --title "Entrada de variavel" --inputbox "Digite somente numero.\nDigite o primeiro numero: " 0 0`
+
+done
+
+
+
+until grep -E ^[0-9./]+$ <<< $num2
+do
+
+
+num2=`dialog --stdout --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Entrada de variavel" --inputbox "Digite somente numero.\nDigite o segundo numero: " 0 0`
+done
+
+
+
+
+
+while ! [ "$a" = "8" ]; do
+
+	opcao=`dialog --stdout --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Menu de opçoes" --menu "Primeiro numero digitado: $num1\nSegundo numero digitado: $num2\nEscolha uma das opçoes abaixo: " 0 0 8 \
+	1 " para Adição -> " \
+	2 " para Subtração -> " \
+	3 " para Multiplicacao -> " \
+	4 " para Divisão -> " \
+	5 " para Raiz Quadrada -> " \
+	6 " para Potencia -> " \
+	7 " para  Fatorização -> " \
+	8 " para Sair -> "`
+
+	
+	
+	#read opcao
+	case $opcao in
+		1)
+		clear
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Adição" --msgbox "$num1 + $num2 = `echo "$num1 + $num2" | bc -l` " 0 0
+
+      
+		;;
+		2)
+		clear
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Subtração" --msgbox "$num1 - $num2 = `echo "$num1 - $num2" | bc -l`\n$num2 - $num1 = `echo "$num2 - $num1" | bc -l`" 0 0 
+		
+		
+		;;
+		3)
+		clear
+
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Multiplicação" --msgbox "$num1 * $num2 = `echo "$num1 * $num2" | bc -l` " 0 0
+
+		;;
+		4)
+		clear
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Divisão" --msgbox "$num1 / $num2 = `echo "scale=3;$num1 / $num2" | bc -l`\n$num2 / $num1 = `echo "scale=3;$num2 / $num1" | bc -l`" 0 0 
+		
+		;;
+		5)
+		clear
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Raiz Quadrada" --msgbox "$num1 = `echo "scale=3;sqrt($num1)" | bc -l`\n$num2 = `echo "scale=3;sqrt($num2)" | bc -l` " 0 0
+		
+		;;
+		6)
+		clear
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado da Potencia" --msgbox "$num1 ^ $num2 = `echo "scale=3;$num1 ^ $num2" | bc -l`\n$num2 ^$num1 = `echo "scale=3;$num2 ^ $num1" | bc -l` " 0 0
+		
+		;;
+		7)
+		clear
+		fatoracao1=$num1
+ 	        for ((i=1; i<$num1; i++)); do
+	        	fatoracao1=`echo "$fatoracao1 * $i" | bc -l`
+		done
+		fatoracao2=$num2
+		for ((i=1; i<$num2; i++)); do
+			fatoracao2=`echo "$fatoracao2 * $i" | bc -l`
+		done
+
+
+		dialog --stdout --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Resultado do Fatorial" --msgbox "O Fatorial de $num1 é: $fatoracao1\nO Fatorial de $num2 é: $fatoracao2" 0 0
+		clear
+		;;
+
+		8)
+		clear
+		a="8"
+		dialog --backtitle "Calculadora V1.0 - by Aluno Fatec" --title "Saindo do Programa..." --infobox "Obrigado por utilizar nossa calculadora" 0 0
+		sleep 2
+		clear 
+		;;
+		
+		
+	
+	esac
+done
+	
