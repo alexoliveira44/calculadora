@@ -1,0 +1,142 @@
+#!/bin/bash
+clear
+echo "######################################"
+echo "#################### CALCULADORA #####"
+echo "######################################"
+echo ""
+echo ""
+echo ""
+a="1"
+fatoracao1="1"
+fatoracao2="1"
+
+echo "Digite um numero qualquer:"
+read num1
+
+
+echo "Digite outro numero qualquer:"
+read num2
+
+echo ""
+echo ""
+echo "Agora vamos as opçoes:"
+
+
+
+while ! [ "$a" = "8" ]; do
+	echo "1) Adição"
+	echo "2) Subtração"
+	echo "3) Multiplicacao"
+	echo "4) Divisão"
+	echo "5) Raiz Quadrada"
+	echo "6) Potencia"
+	echo "7) Fatorização"
+	echo "8) Sair"
+	
+	
+	read opcao
+	case $opcao in
+		1)
+		echo "Opção escolhida: ->Adicao"
+                echo "--------------------------"
+		echo ""
+		echo "A Soma de $num1 + $num2 é igual a:"
+		echo "$num1 + $num2" |bc -l
+		sleep 3
+        	clear
+		;;
+		2)
+		echo "Opção escolhida: ->Subtração"
+		echo "----------------------------"
+		echo ""
+		echo "A Subtração de $num1 - $num2 é igual a:"
+		echo "$num1 - $num2" |bc -l
+		sleep 3
+		clear
+		;;
+		3)
+		echo "Opçao escolhida: ->Multiplicação"
+		echo "--------------------------------"
+		echo ""
+		echo "A Multiplicacao de $num1 * $num2 é igual a:"
+		echo "$num1 * $num2" |bc -l
+		sleep 3
+		clear
+		;;
+		4)
+		echo "Opçao escolhida: ->Divisão"
+		echo "--------------------------"
+		echo ""
+		echo "A Divisão de $num1 / $num2 é igual a:"
+		echo "scale=3;$num1 / $num2" |bc -l
+		sleep 3
+		clear
+		;;
+		5)
+		echo "Opção escolhida: ->Raiz Quadrada"
+		echo "--------------------------------"
+		echo ""
+		echo "A Raiz quadrada de $num1 é:"
+		echo "scale=3;sqrt($num1)"|bc -l
+	        echo ""
+		echo "A Raiz quadrada de $num2 é:"
+		echo "scale=3;sqrt($num2)"|bc -l
+		sleep 5
+		clear
+		;;
+		6)
+		echo "Opção escolhida: ->Potenciação"
+		echo "-------------------------------"
+		echo ""
+		echo "A Potencia de $num1 com $num2 é:"
+		echo "scale=3;$num1 ^ $num2"|bc -l
+		echo ""
+		echo "A Potencia de $num2 com $num1 é:"
+		echo "scale=3;$num2 ^ $num1"|bc -l
+		sleep 5
+		clear
+		;;
+		7)
+		echo "Opção escolhida: ->Fatoração"
+		echo "----------------------------"
+		echo ""
+		echo "A Fatoração de $num1 equivale a:"
+		fatoracao1=$num1
+ 	             for (( i=1; i<$num1; i++)); do
+	             fatoracao1=`echo "$fatoracao1 * $i" | bc -l`
+
+		done
+		echo "$fatoracao1"
+		echo ""
+		echo "A Fatoração de $num2 equivale a:"
+		fatoracao2=$num2
+	
+		for (( i=1; i<$num2; i++)); do
+			fatoracao2=`echo "$fatoracao2 * $i" | bc -l`
+		done
+		echo "$fatoracao2"|bc -l
+		sleep 5
+		clear
+		;;
+		8)
+		echo "Saindo do sistema"
+		sleep 3
+		a="8" 
+		;;
+		*)
+		echo "Opção inválida !!"
+		sleep 2
+		clear
+                ;;
+		
+	
+	esac
+done
+	
+
+
+
+	
+
+
+
